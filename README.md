@@ -5,6 +5,7 @@
 ### Description
 This program simulates a shell with which you can run all kinds of commands.
 In case there was an error when running a command the program will output to it.
+To exit the shell use `exit` as usual
 
 ---
 

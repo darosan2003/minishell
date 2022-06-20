@@ -1,14 +1,14 @@
-# Variable para el compilador
+# Variable for the compiler
 CC = gcc
-# Variable para las flags de compilacion
+# Variables for compiler flags
 CFLAGS = -Wall -c -g3
-# Variable para las flags de enlazado
+# Variables for linking flags
 CLINKERS = -o
-# Variable para el directorio de los objetos
+# Variable for object directory
 OBJ_DIR = /obj/
-# Variable para guardar los targets
+# Variable to store the targets
 TARGET = minishell
-# Variable para guardar los objetos
+# Variable to store the objects
 OBJ = minishell.o
 
 .PHONY: all
