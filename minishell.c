@@ -5,6 +5,7 @@
 #include <sys/wait.h>
 
 #define MAX_ARGS 10
+#define EXIT_CODE 255
 
 void shell(char *name) {
 
@@ -29,6 +30,10 @@ void shell(char *name) {
       q = strchr(command, '\n');
       if(q) *q = '\0';
 
+      if(strlen(command) == 0) break;
+
+      if(strncmp(command, "exit", 4) == 0) exit(EXIT_CODE);
+
       char *arg = strtok(command, " ");
       while(arg != NULL) {
         args[dim] = arg;
@@ -48,8 +53,17 @@ void shell(char *name) {
 
       if(WIFEXITED(wstat)) {
         int status = WEXITSTATUS(wstat);
-        if(status != 0)
-          puts(strerror(status));
+        if(status != 0) {
+          switch(status) {
+            case 1:
+              puts("Command not found");
+              break;
+            case EXIT_CODE:
+              exit(EXIT_SUCCESS);
+            default:
+              puts("An error has occured");
+          }
+        }
       }else{
         fprintf(stderr, "[-] Command terminated abnormally\n");
         return;
@@ -70,6 +84,6 @@ int main(int argc, char **argv) {
   }
 
   shell(argv[1]);
-  return 0;
+  return EXIT_SUCCESS;
 
 }
