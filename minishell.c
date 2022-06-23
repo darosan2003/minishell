@@ -87,7 +87,7 @@ void shell(char *name) {
 
 int main(int argc, char **argv) {
 
-    if(argc != 2) {
+  if(argc != 2) {
     fprintf(stderr, "[-] Incorrect number of args supplied\n");
     fprintf(stderr, "[?] Usage: %s <name>", argv[0]);
     return 1;
