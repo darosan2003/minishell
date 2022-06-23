@@ -7,6 +7,11 @@
 #define MAX_ARGS 10
 #define EXIT_CODE 255
 
+void handle_sigint(int sig) {
+  puts("\n[!] Exiting the shell...");
+  exit(1);
+}
+
 void shell(char *name) {
 
   char command[256];
@@ -48,6 +53,11 @@ void shell(char *name) {
 
     }else{
 
+      struct sigaction sa;
+      sa.sa_handler = &handle_sigint;
+
+      sigaction(SIGINT, &sa, NULL);
+
       int wstat;
       wait(&wstat);
 
@@ -77,7 +87,7 @@ void shell(char *name) {
 
 int main(int argc, char **argv) {
 
-  if(argc != 2) {
+    if(argc != 2) {
     fprintf(stderr, "[-] Incorrect number of args supplied\n");
     fprintf(stderr, "[?] Usage: %s <name>", argv[0]);
     return 1;
