@@ -15,7 +15,6 @@ void handle_sigint(int sig) {
 void shell(char *name) {
 
   char command[256];
-  char *q;
   pid_t pid;
   size_t dim = 0;
 
@@ -32,8 +31,7 @@ void shell(char *name) {
 
       printf("%s> ", name);
       fgets(command, sizeof(command), stdin);
-      q = strchr(command, '\n');
-      if(q) *q = '\0';
+      command[strlen(command) - 1] = '\0';
 
       if(strlen(command) == 0) break;
 
