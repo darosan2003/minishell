@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=zipforcer.rs
+FILE=minishell.rs
 compiler=$(which rustc)
 
 if [ $? -ne 0 ]; then
