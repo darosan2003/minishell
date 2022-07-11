@@ -1,7 +1,7 @@
 #!/bin/bash
 
 FILE=minishell.rs
-compiler=$(which rustc)
+compile=$(which rustc)
 
 if [ $? -ne 0 ]; then
 	echo "[-] rustc compiler not found"
@@ -9,5 +9,5 @@ if [ $? -ne 0 ]; then
 	exit
 fi
 
-$(which rustc) $FILE
+$compile $FILE
 echo "[+] Done!"
